@@ -18,6 +18,7 @@ class TaskDetails extends StatelessWidget {
     Widget getAlertDialog({
       required bool doYouEditTitle,
     }) {
+
       return AlertDialog(
         title: doYouEditTitle
             ? const Text("Edit Title")

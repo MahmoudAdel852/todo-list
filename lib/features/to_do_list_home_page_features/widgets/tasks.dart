@@ -10,7 +10,8 @@ class Tasks extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var items = Provider.of<ToDoProvider>(context).toDoList;
+    var items = Provider.of<ToDoProvider>(context);
+
     return SingleChildScrollView(
       child: Container(
         color: Colors.black12,
@@ -22,13 +23,13 @@ class Tasks extends StatelessWidget {
               index: item,
             );
           },
-          itemCount: items.length,
+          itemCount: items.toDoList.length,
           physics: const ClampingScrollPhysics(),
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
         ),
       ),
     );
-    ;
+
   }
 }

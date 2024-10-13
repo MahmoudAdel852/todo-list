@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       onGenerateRoute: route.getRoute,
       debugShowCheckedModeBanner: false,
-      home: const ToDoHomePage(),
+       home: const ToDoHomePage(),
     );
   }
 }

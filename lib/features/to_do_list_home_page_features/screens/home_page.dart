@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import 'package:to_do_list_task/core/cache/shared_preferences_data.dart';
 import '../../../core/providers/to_do_list_provider.dart';
 import '../../../core/strings/page_name.dart';
 import '../widgets/tasks.dart';
@@ -12,20 +12,19 @@ class ToDoHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     var item = Provider.of<ToDoProvider>(context);
 
-    Widget? getDataSaved() {
-      if (item.toDoList.isEmpty ) {
-        item.getCacheData;
-        if (item.toDoList.isEmpty ) {
+     setBody()  {
+      if (item.toDoList.isEmpty) {
+        List test = CacheData.getData(key: "title");
+        if (test.isEmpty) {
           return const Center(
-            child: Text("add some tasks"),
+            child: Text("add some tasks today"),
           );
         } else {
-           return const Tasks();
+          item.getCacheData();
+          return const Tasks();
         }
       } else {
-        return const Center(
-          child: Text("add some tasks today"),
-        );
+        return const Tasks();
       }
     }
 
@@ -36,9 +35,7 @@ class ToDoHomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body:item.toDoList.isEmpty?const Center(
-        child: Text("add some tasks today"),
-      ):const Tasks(),
+      body:setBody(),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {

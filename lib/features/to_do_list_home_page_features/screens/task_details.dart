@@ -19,6 +19,7 @@ class TaskDetails extends StatelessWidget {
       required bool doYouEditTitle,
     }) {
 
+
       return AlertDialog(
         title: doYouEditTitle
             ? const Text("Edit Title")
@@ -33,8 +34,8 @@ class TaskDetails extends StatelessWidget {
           TextButton(
             onPressed: () {
               doYouEditTitle
-                  ? item.toDoList[index].title = controller.text
-                  : item.toDoList[index].body = controller.text;
+                  ? item.toDoList![index].title = controller.text
+                  : item.toDoList![index].body = controller.text;
               item.saveData();
               Navigator.pushNamedAndRemoveUntil(
                 context,
@@ -59,13 +60,13 @@ class TaskDetails extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(item.toDoList[index].title),
+        title: Text(item.toDoList![index].title),
         centerTitle: true,
       ),
       body: Center(
-        child: item.toDoList[index].body.isEmpty
+        child: item.toDoList![index].body.isEmpty
             ? const Text("You Have No Description")
-            : Text(item.toDoList[index].body),
+            : Text(item.toDoList![index].body),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
@@ -100,4 +101,5 @@ class TaskDetails extends StatelessWidget {
       ),
     );
   }
+
 }

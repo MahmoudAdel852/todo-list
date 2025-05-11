@@ -55,6 +55,8 @@ class ToDoTaskWidget extends StatelessWidget {
                 Navigator.pop(context);
                 Navigator.push(
                     context,
+
+
                     MaterialPageRoute(
                         builder: (context) => TaskDetails(index: index)));
               },
@@ -75,15 +77,24 @@ class ToDoTaskWidget extends StatelessWidget {
           children: [
             Expanded(
               flex: 1,
-              child: Text(
-                item.toDoList[index].title,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 24,
-                  color: Colors.cyan,
-                ),
+              child: Column(
+                children: [
+                  Text(
+                    item.toDoList[index].title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      fontSize: 24,
+                      color: Colors.cyan,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    item.toDoList[index].taskCategory,
+                  ),
+                ],
               ),
             ),
+            
             Expanded(
               flex: 0,
               child: Checkbox(
@@ -93,11 +104,9 @@ class ToDoTaskWidget extends StatelessWidget {
                 },
               ),
             ),
-          ],
+           ],
         ),
       ),
     ));
   }
 }
-//
-/////////////////////////////////////

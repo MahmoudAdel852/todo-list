@@ -1,29 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_list_task/core/cache/shared_preferences_data.dart';
+import 'package:to_do_list_task/features/to_do_list_home_page_features/widgets/tasks.dart';
 import '../../../core/providers/to_do_list_provider.dart';
 import '../../../core/strings/page_name.dart';
-import '../widgets/tasks.dart';
 
+ 
 class ToDoHomePage extends StatelessWidget {
   const ToDoHomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     var item = Provider.of<ToDoProvider>(context);
+    setBody() {
+      var toDoList = item.toDoList;
+      if ( toDoList.isEmpty || toDoList == []) {
+        return const Center(
+          child: Text(
+            "you don't have any data yet",
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 24,
+            ),
 
-     setBody()  {
-      if (item.toDoList.isEmpty) {
-        List test = CacheData.getData(key: "title");
-        if (test.isEmpty) {
-          return const Center(
-            child: Text("add some tasks today"),
-          );
-        } else {
-          item.getCacheData();
-          return const Tasks();
-        }
-      } else {
+          ),
+        );
+      }else{
         return const Tasks();
       }
     }
@@ -35,7 +36,7 @@ class ToDoHomePage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body:setBody(),
+      body: setBody(),
       floatingActionButton: FloatingActionButton(
           child: const Icon(Icons.add),
           onPressed: () {
